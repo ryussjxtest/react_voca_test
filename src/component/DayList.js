@@ -33,7 +33,8 @@ export default function DayList(){
   },[count]);
   // 의존성 배열.
   // 의존성 배열이 변경된 경우에만 useEffect가 동작하고..그래서 log가 찍힌다.
-
+  // 최초에 한번만 실행... 렌더링 되고 api 호출.
+  // 렌더링 완료되고 한번만   -> 의존성 배열에 빈배열...[]
 
   return (
     <>
