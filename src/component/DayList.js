@@ -31,6 +31,10 @@ export default function DayList(){
     //effect callback fn.
     console.log('[useEffect] Count changed..', count);
   },[count]);
+  // 의존성 배열.
+  // 의존성 배열이 변경된 경우에만 useEffect가 동작하고..그래서 log가 찍힌다.
+
+
   return (
     <>
       <ul className="list_day">
