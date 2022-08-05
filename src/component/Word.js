@@ -7,7 +7,9 @@ import { useParams } from "react-router-dom";
 // 우리는 fe공부중...
 // npm install -g json-server
 // json-server --watch ./src/db/data.json --port 3001 
-export default function Word({word}){
+export default function Word({word : w}){ // word:w 새로운 변수명으로 할당한다.
+  // 단어 삭제시 페이지가 다시 렌더링 되도록 하자.   word를 state로 만든다.
+  const [word, setWord] = useState(w);
   const [isShow, setIsShow] = useState(false);
   const [isDone, setIsDone] = useState(word.isDone);
   function toggleShow(){
@@ -45,10 +47,16 @@ export default function Word({word}){
     // method는 DELETE이다.
     // 삭제 버튼을 누르면 삭제하도록 수정한다.
     if(window.confirm("삭제 하시겠습니까????")){
+      console.log("CRUD Delete DELETE...... Yes");
       fetch(`http://localhost:3001/words/${word.id}`,{
         method : "DELETE", // 삭제는 특별히 다른 정보 필요없이 method만 있으면 된다.
+      }).then(res=>{
+        if(res.ok){
+          console.log("CRUD Delete DELETE...... Completed.");
+          setWord({id:0});  // key가 같으면 덮어쓴다.
+        }
       });
-      console.log("CRUD Delete DELETE...... Yes");
+      
     }else{
       console.log("CRUD Delete DELETE...... No");
     } 
@@ -56,6 +64,11 @@ export default function Word({word}){
     // refresh해보면 확인가능하다.    
     // 삭제시에도 page가 자동으로 refesh되도록 한다.
   }
+  if(word.id == 0){
+    console.log("Return Null... page reloaded");
+    return null; // 이로써 page가 reload된다.
+  }
+
   return(
     // <tr key={word.id}>.. Day => Word로 props 전달.
     // isDone여부에 따라 className을 수정해서 style을 변경할수 잇다.  음....

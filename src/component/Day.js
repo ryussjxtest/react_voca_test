@@ -8,12 +8,16 @@ import Word from "./Word";
 export default function Day(){
 
   const day = Number(useParams().day);
-  const words = useFetch(`http://localhost:3001/words?day=${day}`);
+  let url ="http://localhost:3001/words"
+  if (day != 0){
+    url += `?day=${day}`;
+  }
+  const words = useFetch(url);
   // console.log(`[Day] http://localhost:3001/words?day=${day}`)
   return (
     <>
       <DayList />
-      <h2>Day {day}</h2>
+      <h2>Day {day?day:"ALL"}</h2>
       <table>
         <tbody>
           {words.map(word=>(

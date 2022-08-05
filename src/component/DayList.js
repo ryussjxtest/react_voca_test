@@ -13,6 +13,9 @@ export default function DayList(){
       <ul className="list_day">
         {/* {dummy.days.map(day=>( 
           dummy가 아닌 REST로 읽어온 값으로 처리하자.*/}
+        <li >
+          <Link to={`/day/0`}>Day all</Link>
+        </li>
         {days.map(day=>(
           <li key={day.id}>
             <Link to={`/day/${day.day}`}>Day {day.day}</Link>
