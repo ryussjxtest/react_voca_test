@@ -5,6 +5,7 @@ import Header  from './component/Header';
 import { BrowserRouter ,Switch , Route} from 'react-router-dom';
 import EmptyPage from "./component/EmptyPage";
 import CreateWord from "./component/CreateWord";
+import CreateDay from "./component/CreateDay";
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
           {/* 위의 조건에 맞지 않아야 여기로 온다. 위치에 주의하자. */}
           <Route path="/create_word">
             <CreateWord />
+          </Route>
+          <Route path="/create_day">
+            <CreateDay />
           </Route>
           <Route>
             <EmptyPage/>

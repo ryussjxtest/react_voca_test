@@ -17,7 +17,7 @@ export default function Day(){
   return (
     <>
       <DayList />
-      <h2>Day {day?day:"ALL"}</h2>
+      <h2>Day {day?day:"ALL"}, 총 {words.length}개의 단어가 있습니다.</h2>
       <table>
         <tbody>
           {words.map(word=>(
