@@ -14,11 +14,34 @@ export default function Word({word}){
     setIsShow(!isShow);
   }
   function toggleDone(){
-    // console.log(`[toggleDone] isDone[${isDone}], isShow[${isShow}]`);
-    if(!isDone){
-      setIsShow(false);
-    }
-    setIsDone(!isDone);
+    // CRUD의 U. update로 db의 값을 수정해 본다.
+    // Update는 PUT으로 가능하다. 
+    // check 박스(isDone)의 변경사항을 반영한다.
+    fetch(`http://localhost:3001/words/${word.id}`,{
+      method : "PUT",
+      headers :{
+        "Content-Type" : "application/json", // json 형태로 전달
+      },
+      // 단순히 가져오는 Get과 달리 Put은 다르다.
+      // 수정을 위한 정보를 body에 입력한다.
+      body : JSON.stringify({
+        ...word, // 기존data에... 전개구문(spread syntax..)
+        isDone : !isDone, //여기가...이전 isDone을 toggle.
+      }), // JSON.stringify 로 json format을 감싸준다.
+    }).then(res =>{
+      if(res.ok){
+        // 응답이 OK이면 이때 state를 바꾼다.
+        if(!isDone){ // 여기는 내가 넣은것. 체크하면 뜻 숨기도록...추가.
+          setIsShow(false);
+        }
+        setIsDone(!isDone);
+      }
+    });
+    
+    // if(!isDone){
+    //   setIsShow(false);
+    // }
+    // setIsDone(!isDone);
   }
   return(
     // <tr key={word.id}>.. Day => Word로 props 전달.
