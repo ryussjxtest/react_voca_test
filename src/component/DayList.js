@@ -7,8 +7,12 @@ import useFetch from '../hook/useFetch';
 export default function DayList(){
 
   const days = useFetch("http://localhost:3001/days");
-  
-
+  // 느린 network 환경을 만들어 로딩을 느리게 하고...그때 보여주는 기능을 적용한다.
+  // browser > F12 > network > online(No Throttling)=> slow 3G 설정하므로써...
+  if (days.length === 0){
+    // 하나도 못읽은 상태라면...
+    return <span>Loading.........로......디....ㅇ....ㅈ.....ㅜ...ㅇ..</span>
+  }
   return (
     <>
       <ul className="list_day">
