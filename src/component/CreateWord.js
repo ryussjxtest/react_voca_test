@@ -1,9 +1,14 @@
 import { useRef } from "react";
+import { useHistory } from "react-router-dom";
 import useFetch from "../hook/useFetch";
 
 export default function CreateWord(){
   console.log(`[CreateWord] `);
   const days = useFetch("http://localhost:3001/days");
+  // 추가한 사항을 매번 다시 home으로 가서 확인해야 하니 불편하다.
+  // 추가 하면 바로 추가된 day로 이동하도록 한다.
+  // 여기에서 react-router-dom가 제공하는 useHistory를 이용한다.
+  const history = useHistory(); // 선언하고 아래서 push로 이동할 url넣는다.
 
   // 버튼을 눌러도 새로 하지 않도록 막는다.
   function onSubmit(e){
@@ -12,9 +17,9 @@ export default function CreateWord(){
     let newEng = engRef.current.value;
     let newKor = korRef.current.value;
     let newDay = dayRef.current.value;
-    console.log('[onSubmit engRef] ',newEng);
-    console.log('[onSubmit korRef] ',newKor);
-    console.log('[onSubmit dayRef] ',newDay);
+    // console.log('[onSubmit engRef] ',newEng);
+    // console.log('[onSubmit korRef] ',newKor);
+    // console.log('[onSubmit dayRef] ',newDay);
 
     fetch(`http://localhost:3001/words`,{
       method : "POST",
@@ -32,6 +37,8 @@ export default function CreateWord(){
       if(res.ok){
         // alert("생성이 완료 되었습니다.")
         console.log("POST OK", newDay, newEng, newKor);
+        // link to 처럼 페이지 이동, link to , a tag없이 page이동가능.
+        history.push(`/day/${newDay}`);  
       }
     })
   }
