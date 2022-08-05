@@ -1,0 +1,26 @@
+/* App.css의 box class와 동일해서 Hello 컴포넌트에 별도로 적용이 안됨. 
+browser 구동 > F12 > consle에서 보면 .. style에 box는 하나.
+그래서 App.js, Hello.js에서 각각의 css의 box를 써도 안된다.
+따라서 CompnentName.module.css(xxxx.module.css)를 각각 만들고
+App.js, Hello.js에서 각각 파일을 따로 import해야 
+같은 이름의 다른  style적용 가능하다. 
+App.css에서 복사
+이유는 각각의 componet에서 같은 이름이지만 다른 box의 style을 적용해 보려고.
+*/
+
+
+
+/* css 파일을 component 별로  관리하는 것이 project가 커지면 유리하다.
+App.js에 아래와 같이 별도로 생성한 component용 xxx.module.css를 import해줘야 한다.
+import styles from "./App.module.css" ; //별도 import 
+....
+실제 사용 부분.   아래와 같이 styles.box라고 명시 한다.
+brwoser구동 > F12 > Element에서 보면 별도의 style이 생성되었음을 알수 잇다.
+향후 안쓰니 옮겨 놓자....
+<div className={styles.box}>App.css box</div>
+*/
+.box {
+  width : 300px;
+  height : 100px;
+  background-color:red;
+}

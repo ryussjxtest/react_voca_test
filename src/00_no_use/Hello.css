@@ -1,0 +1,13 @@
+/* App.css의 box class와 동일해서 Hello 컴포넌트에 별도로 적용이 안됨. 
+browser 구동 > F12 > consle에서 보면 .. style에 box는 하나.
+그래서 App.js, Hello.js에서 각각의 css의 box를 써도 안된다.
+따라서 CompnentName.module.css(xxxx.module.css)를 각각 만들고
+App.js, Hello.js에서 각각 파일을 따로 import해야 
+같은 이름의 다른  style적용 가능하다. 
+아래는 막고 Hello.module.css로 옮긴다.
+*/
+/* .box {
+  width : 200px;
+  height : 50px;
+  background-color:rgb(51, 5, 5);
+} */
