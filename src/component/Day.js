@@ -9,7 +9,7 @@ export default function Day(){
 
   const day = Number(useParams().day);
   const words = useFetch(`http://localhost:3001/words?day=${day}`);
-
+  // console.log(`[Day] http://localhost:3001/words?day=${day}`)
   return (
     <>
       <DayList />

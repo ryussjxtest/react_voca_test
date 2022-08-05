@@ -37,11 +37,24 @@ export default function Word({word}){
         setIsDone(!isDone);
       }
     });
+  }
+  function delWord(){
+    // console.log("CRUD Delete DELETE......");
     
-    // if(!isDone){
-    //   setIsShow(false);
-    // }
-    // setIsDone(!isDone);
+    // CRUD의 D. Delete로 db의 값을 삭제한다.
+    // method는 DELETE이다.
+    // 삭제 버튼을 누르면 삭제하도록 수정한다.
+    if(window.confirm("삭제 하시겠습니까????")){
+      fetch(`http://localhost:3001/words/${word.id}`,{
+        method : "DELETE", // 삭제는 특별히 다른 정보 필요없이 method만 있으면 된다.
+      });
+      console.log("CRUD Delete DELETE...... Yes");
+    }else{
+      console.log("CRUD Delete DELETE...... No");
+    } 
+    // 여기까지만 하면...삭제후  페이지가 reload되지 않는다.
+    // refresh해보면 확인가능하다.    
+    // 삭제시에도 page가 자동으로 refesh되도록 한다.
   }
   return(
     // <tr key={word.id}>.. Day => Word로 props 전달.
@@ -55,7 +68,7 @@ export default function Word({word}){
       <td>{isShow && word.kor}</td>
       <td>
         <button onClick={toggleShow}>뜻 {isShow ? "숨기기": "보기"}</button>
-        <button className="btn_del">삭제</button>
+        <button className="btn_del" onClick={delWord}>삭제</button>
       </td>
       {/* <td>{word.isDone? "암기":"암기필요"}</td> */}
     </tr>
