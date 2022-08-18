@@ -65,3 +65,7 @@ export default App;
 // Read   : GET
 // Update : PUT
 // Delete : DELETE
+
+
+// 17강. typescript...
+// npm install typescript @types/node @types/react @types/react-dom @types/jest @types/react-router-dom

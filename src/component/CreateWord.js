@@ -81,11 +81,7 @@ export default function CreateWord(){
             <option key={day.id} value={day.day}> {day.day} </option>   
           ))}
         </select>
-        {/* <select>
-          <option> 1 </option>
-          <option> 2 </option>
-        </select> 
-        */}
+
       </div>
       {/* <button className="btn_del">저장</button> */}
       <button onClick={()=>{
